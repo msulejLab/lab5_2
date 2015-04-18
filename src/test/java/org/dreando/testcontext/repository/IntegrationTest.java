@@ -11,7 +11,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 @ContextConfiguration(classes = { ApplicationConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
-@TransactionConfiguration(defaultRollback = true)
 public class IntegrationTest {
 
 	@BeforeClass

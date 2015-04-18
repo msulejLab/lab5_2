@@ -1,35 +1,42 @@
 package org.dreando.testcontext.repository;
 
-import static org.junit.Assert.assertEquals;
-
 import org.dreando.testcontext.model.Person;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PersonRepositoryIntegrationTest extends IntegrationTest {
 
-	@Autowired
-	private PersonRepository personRepository;
+    @Autowired
+    private PersonRepository personRepository;
 
-	@Test
-	public void testCanAccessDbAndGetTestData() {
-		Person foundTestPerson = personRepository.findOne(1L);
-		assertEquals("Testowy", foundTestPerson.getLastName());
-	}
+    @Test
+    public void testCanAccessDbAndGetTestData() {
+        List<Person> foundTestPersons = personRepository.findAll();
+        assertEquals(2, foundTestPersons.size());
+    }
 
-	@Test
-	public void testWriteNewRecordAndCount() {
-		personRepository.saveAndFlush(getPerson());
-		System.out.println(personRepository.findAll());
-		assertEquals(2, personRepository.count());
-	}
+    @Test
+    public void testSaveNewPersonAndCheckIsPersisted() {
+        long count = personRepository.count();
+        /* Warto zanotowac, ze istnieje cos takiego jak generator sekwencji, ktory odpowiednio skonfigurowany
+         * przejmie za nas role martwienia sie o unikalne i nastepujace po sobie identyfikatory. Patrz @SequenceGenerator */
+        personRepository.save(getPerson(count + 1, "Roberto", "Mancini"));
+        assertEquals(count + 1, personRepository.count());
+        assertEquals("Mancini", personRepository.findOne(count + 1).getLastName());
+    }
 
-	private Person getPerson() {
-		Person person = new Person();
-		person.setId(2L);
-		person.setFirstName("Marian");
-		person.setLastName("Testowy2");
-		return person;
-	}
-
+    private Person getPerson(Long id, String firstName, String lastName) {
+        Person person = new Person();
+        person.setId(id);
+        person.setFirstName(firstName);
+        person.setLastName(lastName);
+        return person;
+    }
 }

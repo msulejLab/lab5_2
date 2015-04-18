@@ -1,3 +1,4 @@
+drop table if EXISTS person;
 create table person (
 id bigint not null,
 first_name varchar(255),

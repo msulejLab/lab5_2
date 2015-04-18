@@ -1,9 +1,5 @@
 package org.dreando.testcontext.config;
 
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
 import org.dreando.testcontext.utils.ModeUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,81 +17,76 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = { "org.dreando.testcontext.repository" })
+@EnableJpaRepositories(basePackages = {"org.dreando.testcontext.repository"})
 public class PersistenceConfig {
 
-	@Value("${database.name}")
-	private String databaseName;
+    @Value("${database.name}")
+    private String databaseName;
 
-	@Value("${database.user}")
-	private String databaseUser;
+    @Value("${database.user}")
+    private String databaseUser;
 
-	@Value("${database.password}")
-	private String databasePassword;
+    @Value("${database.password}")
+    private String databasePassword;
 
-	@Value("${database.hbm2ddlAuto}")
-	private String hbm2ddlAuto;
-	
-	@Bean(name = "dataSource")
-	public DataSource getDataSource() {
-		DataSource dataSource = createDataSource();
-		DatabasePopulatorUtils.execute(createDatabasePopulator(), dataSource);
-		return dataSource;
-	}
+    @Value("${database.hbm2ddlAuto}")
+    private String hbm2ddlAuto;
 
-	private DatabasePopulator createDatabasePopulator() {
-		ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
-		databasePopulator.setContinueOnError(true);
+    @Bean(name = "dataSource")
+    public DataSource getDataSource() {
+        DataSource dataSource = createDataSource();
+        DatabasePopulatorUtils.execute(createDatabasePopulator(), dataSource);
+        return dataSource;
+    }
+
+    private DatabasePopulator createDatabasePopulator() {
+        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
+        databasePopulator.setContinueOnError(true);
 
 		/*
-		 * W zaleznosci od wybranego trybu, dodajemy testowy albo developerski
+         * W zaleznosci od wybranego trybu, dodajemy testowy albo developerski
 		 * zbior danych
 		 */
-		databasePopulator.addScripts(/*new ClassPathResource("sql/schema-script.sql"),*/ 
-									 new ClassPathResource("sql/" + ModeUtils.getMode().getModeName() + "-data-script.sql"));
-		return databasePopulator;
-	}
+        databasePopulator.addScripts(new ClassPathResource("sql/schema-script.sql"),
+                new ClassPathResource("sql/" + ModeUtils.getMode().getModeName() + "-data-script.sql"));
+        return databasePopulator;
+    }
 
-	private SimpleDriverDataSource createDataSource() {
-		SimpleDriverDataSource simpleDriverDataSource = new SimpleDriverDataSource();
-		simpleDriverDataSource.setDriverClass(org.h2.Driver.class);
+    private SimpleDriverDataSource createDataSource() {
+        SimpleDriverDataSource simpleDriverDataSource = new SimpleDriverDataSource();
+        simpleDriverDataSource.setDriverClass(org.h2.Driver.class);
 
 		/*
-		 * Podajemy dane do stworzenia bazy danych, ktore sa wlasciwe dla
+         * Podajemy dane do stworzenia bazy danych, ktore sa wlasciwe dla
 		 * naszego trybu. Patrz PropertyPlaceholderConfigurer i
 		 * ApplicationConfig
 		 */
-		simpleDriverDataSource.setUrl("jdbc:h2:mem:" + databaseName + ";DB_CLOSE_DELAY=-1");
-		simpleDriverDataSource.setUsername(databaseUser);
-		simpleDriverDataSource.setPassword(databasePassword);
-		return simpleDriverDataSource;
-	}
+        simpleDriverDataSource.setUrl("jdbc:h2:mem:" + databaseName + ";DB_CLOSE_DELAY=-1");
+        simpleDriverDataSource.setUsername(databaseUser);
+        simpleDriverDataSource.setPassword(databasePassword);
+        return simpleDriverDataSource;
+    }
 
-	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-		entityManagerFactoryBean.setDataSource(getDataSource());
-		entityManagerFactoryBean.setPackagesToScan("org.dreando.testcontext.model");
-		entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-		entityManagerFactoryBean.setJpaProperties(getJpaProperties());
-		return entityManagerFactoryBean;
-	}
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactoryBean.setDataSource(getDataSource());
+        entityManagerFactoryBean.setPackagesToScan("org.dreando.testcontext.model");
+        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        return entityManagerFactoryBean;
+    }
 
-	private Properties getJpaProperties() {
-		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", hbm2ddlAuto);
-		return properties;
-	}
-	
-	@Bean(name = "transactionManager")
-	public PlatformTransactionManager annotationDrivenTransactionManager() {
-		return new JpaTransactionManager();
-	}
+    @Bean(name = "transactionManager")
+    public PlatformTransactionManager annotationDrivenTransactionManager() {
+        return new JpaTransactionManager();
+    }
 
-	@Bean
-	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-		return new PersistenceExceptionTranslationPostProcessor();
-	}
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+        return new PersistenceExceptionTranslationPostProcessor();
+    }
 }

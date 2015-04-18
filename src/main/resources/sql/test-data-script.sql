@@ -1,2 +1,2 @@
-insert into person(id, first_name, last_name) values (1, 'Marian', 'Testowy'),
-insert into person(id, first_name, last_name) values (2, 'Wladymir', 'Wladimirowicz');
+insert into person(id, first_name, last_name) values (1, 'Marian', 'Testowy1');
+insert into person(id, first_name, last_name) values (2, 'Marian', 'Testowy2');
