@@ -1,4 +1,4 @@
-package org.dreando.testcontext.utils;
+package edu.iis.mto.intergrationtest.utils;
 
 public enum Mode {
 	DEV("dev"), TEST("test");

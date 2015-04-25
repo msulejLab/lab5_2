@@ -1,14 +1,15 @@
-package org.dreando.testcontext.main;
+package edu.iis.mto.intergrationtest.main;
 
-import org.dreando.testcontext.config.ApplicationConfig;
-import org.dreando.testcontext.model.Person;
-import org.dreando.testcontext.repository.PersonRepository;
-import org.dreando.testcontext.utils.Mode;
-import org.dreando.testcontext.utils.ModeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import edu.iis.mto.intergrationtest.config.ApplicationConfig;
+import edu.iis.mto.intergrationtest.model.Person;
+import edu.iis.mto.intergrationtest.repository.PersonRepository;
+import edu.iis.mto.intergrationtest.utils.Mode;
+import edu.iis.mto.intergrationtest.utils.ModeUtils;
 
 public class ApplicationMain {
 

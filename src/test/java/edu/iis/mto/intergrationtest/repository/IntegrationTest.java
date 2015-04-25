@@ -1,13 +1,14 @@
-package org.dreando.testcontext.repository;
+package edu.iis.mto.intergrationtest.repository;
 
-import org.dreando.testcontext.config.ApplicationConfig;
-import org.dreando.testcontext.utils.Mode;
-import org.dreando.testcontext.utils.ModeUtils;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+
+import edu.iis.mto.intergrationtest.config.ApplicationConfig;
+import edu.iis.mto.intergrationtest.utils.Mode;
+import edu.iis.mto.intergrationtest.utils.ModeUtils;
 
 @ContextConfiguration(classes = { ApplicationConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)

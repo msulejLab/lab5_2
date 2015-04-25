@@ -1,4 +1,4 @@
-package org.dreando.testcontext.model;
+package edu.iis.mto.intergrationtest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
