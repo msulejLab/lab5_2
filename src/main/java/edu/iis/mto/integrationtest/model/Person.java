@@ -1,4 +1,4 @@
-package edu.iis.mto.intergrationtest.model;
+package edu.iis.mto.integrationtest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

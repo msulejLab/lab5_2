@@ -10,7 +10,7 @@
         </encoder>
     </appender>
 
-    <logger name="org.dreando" level="DEBUG"/>
+    <logger name="edu.iis.mto" level="DEBUG"/>
     <logger name="org.springframework" level="WARN"/>
     <logger name="org.hibernate" level="WARN"/>
 

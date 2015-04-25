@@ -1,15 +1,15 @@
-package edu.iis.mto.intergrationtest.main;
+package edu.iis.mto.integrationtest.main;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import edu.iis.mto.intergrationtest.config.ApplicationConfig;
-import edu.iis.mto.intergrationtest.model.Person;
-import edu.iis.mto.intergrationtest.repository.PersonRepository;
-import edu.iis.mto.intergrationtest.utils.Mode;
-import edu.iis.mto.intergrationtest.utils.ModeUtils;
+import edu.iis.mto.integrationtest.config.ApplicationConfig;
+import edu.iis.mto.integrationtest.model.Person;
+import edu.iis.mto.integrationtest.repository.PersonRepository;
+import edu.iis.mto.integrationtest.utils.Mode;
+import edu.iis.mto.integrationtest.utils.ModeUtils;
 
 public class ApplicationMain {
 

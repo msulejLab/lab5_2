@@ -1,8 +1,8 @@
-package edu.iis.mto.intergrationtest.repository;
+package edu.iis.mto.integrationtest.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import edu.iis.mto.intergrationtest.model.Person;
+import edu.iis.mto.integrationtest.model.Person;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
 

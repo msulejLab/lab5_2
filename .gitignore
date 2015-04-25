@@ -1,3 +1,6 @@
 .idea/
 target/
 test-context.iml
+/.classpath
+/.project
+/.settings/

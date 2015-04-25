@@ -1,12 +1,12 @@
-package edu.iis.mto.intergrationtest.repository;
+package edu.iis.mto.integrationtest.repository;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import edu.iis.mto.intergrationtest.model.Person;
-import edu.iis.mto.intergrationtest.repository.PersonRepository;
+import edu.iis.mto.integrationtest.model.Person;
+import edu.iis.mto.integrationtest.repository.PersonRepository;
 
 import java.util.List;
 

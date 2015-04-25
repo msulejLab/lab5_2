@@ -1,4 +1,4 @@
-package edu.iis.mto.intergrationtest.utils;
+package edu.iis.mto.integrationtest.utils;
 
 public enum Mode {
 	DEV("dev"), TEST("test");

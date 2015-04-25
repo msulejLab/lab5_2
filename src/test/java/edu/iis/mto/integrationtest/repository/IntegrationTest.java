@@ -1,4 +1,4 @@
-package edu.iis.mto.intergrationtest.repository;
+package edu.iis.mto.integrationtest.repository;
 
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -6,9 +6,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import edu.iis.mto.intergrationtest.config.ApplicationConfig;
-import edu.iis.mto.intergrationtest.utils.Mode;
-import edu.iis.mto.intergrationtest.utils.ModeUtils;
+import edu.iis.mto.integrationtest.config.ApplicationConfig;
+import edu.iis.mto.integrationtest.utils.Mode;
+import edu.iis.mto.integrationtest.utils.ModeUtils;
 
 @ContextConfiguration(classes = { ApplicationConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
