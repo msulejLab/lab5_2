@@ -10,7 +10,7 @@ import org.springframework.core.io.ClassPathResource;
 import edu.iis.mto.integrationtest.utils.ModeUtils;
 
 @Configuration
-@ComponentScan("org.dreando.testcontext")
+@ComponentScan("edu.iis.mto.integrationtest.repository")
 @Import(value = { PersistenceConfig.class })
 public class ApplicationConfig {
 
