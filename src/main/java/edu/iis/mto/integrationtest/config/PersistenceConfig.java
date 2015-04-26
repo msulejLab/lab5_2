@@ -62,11 +62,6 @@ public class PersistenceConfig {
 	private DatabasePopulator createDatabasePopulator() {
 		ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
 		databasePopulator.setContinueOnError(true);
-
-		/*
-		 * W zaleznosci od wybranego trybu, dodajemy testowy albo developerski
-		 * zbior danych
-		 */
 		databasePopulator.addScripts(new ClassPathResource(
 				SQL_SCHEMA_SCRIPT_PATH), new ClassPathResource(SQL_FOLDER_NAME
 				+ ModeUtils.getMode().getModeName()
@@ -77,13 +72,7 @@ public class PersistenceConfig {
 	private SimpleDriverDataSource createDataSource() {
 		SimpleDriverDataSource simpleDriverDataSource = new SimpleDriverDataSource();
 		Class<? extends Driver> driverClass = getDriverClass();
-		simpleDriverDataSource.setDriverClass(org.h2.Driver.class);
-
-		/*
-		 * Podajemy dane do utworzenia bazy danych, ktore sa wlasciwe dla
-		 * naszego trybu. Patrz PropertyPlaceholderConfigurer i
-		 * ApplicationConfig
-		 */
+		simpleDriverDataSource.setDriverClass(driverClass);
 		simpleDriverDataSource.setUrl(databaseUrl);
 		simpleDriverDataSource.setUsername(databaseUser);
 		simpleDriverDataSource.setPassword(databasePassword);
