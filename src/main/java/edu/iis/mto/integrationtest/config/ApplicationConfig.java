@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 
-@Configuration //wskazuje, że klasa zawiera konfigurację bean’ów Spring
-@ComponentScan("edu.iis.mto.integrationtest.repository") //ustala kontekst poszukiwania komponentów
-@Import(value = { PersistenceConfig.class }) //klasa związana z konfiguracją bean’ów, która importujemy
+@Configuration
+@ComponentScan("edu.iis.mto.integrationtest.repository")
+@Import(value = { PersistenceConfig.class })
 public class ApplicationConfig {
 
     @Bean
-    PropertyPlaceholderConfigurer getPropertyPlaceholderConfigurer() {
+    PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
         PropertyPlaceholderConfigurer resolver = new PropertyPlaceholderConfigurer();
         resolver.setLocation(new ClassPathResource(ModeUtils.getMode().getModeName() + "-persistence.properties"));
 

@@ -23,15 +23,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-@Configuration //wskazuje, że klasa zawiera konfigurację bean’ów Spring
-@EnableTransactionManagement //umożlwia konfigurowanie mechanizmów transakcji z wykorzystaniem adnotacji
-@EnableJpaRepositories(basePackages = {"edu.iis.mto.integrationtest.repository"}) //określa gdzie szukać klas definiujących repozytoria Spring Data.
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(basePackages = {"edu.iis.mto.integrationtest.repository"})
 public class PersistenceConfig {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersistenceConfig.class);
-    private static final String SQL_SCHEMA_SCRIPT_PATH = "";
-    private static final String SQL_FOLDER_NAME = "";
-    private static final String DATA_SCRIPT_FILENAME_SUFFIX = "";
+
+    private static final String SQL_SCHEMA_SCRIPT_PATH = "sql/schema-script.sql";
+    private static final String SQL_FOLDER_NAME = "sql/";
+    private static final String DATA_SCRIPT_FILENAME_SUFFIX = "-data-script.sql";
 
     @Value("${database.url}")
     private String databaseUrl;

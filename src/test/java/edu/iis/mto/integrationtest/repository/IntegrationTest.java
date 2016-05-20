@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@ContextConfiguration(classes = { ApplicationConfig.class }) //kontekst Spring
-@RunWith(SpringJUnit4ClassRunner.class) // uruchamianie z wykorzystaniem specyficznego wykonawcy
+@ContextConfiguration(classes = { ApplicationConfig.class })
+@RunWith(SpringJUnit4ClassRunner.class)
 public class IntegrationTest {
 
 	@BeforeClass
