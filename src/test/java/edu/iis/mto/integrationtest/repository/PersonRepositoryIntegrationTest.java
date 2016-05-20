@@ -75,6 +75,16 @@ public class PersonRepositoryIntegrationTest extends IntegrationTest {
         assertThat(personRepository.findOne(1L), is(nullValue()));
     }
 
+    @Test
+    public void testFindByFirstName() {
+        List<Person> foundPersons = personRepository.findByFirstNameLike("Marian");
+
+        assertThat(foundPersons.size(), is(2));
+
+        for (Person person : foundPersons) {
+            assertThat(person.getFirstName(), is("Marian"));
+        }
+    }
 
 	private Person a(PersonBuilder builder) {
 		return builder.build();
