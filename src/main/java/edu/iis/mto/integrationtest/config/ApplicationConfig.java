@@ -15,7 +15,7 @@ import org.springframework.core.io.ClassPathResource;
 public class ApplicationConfig {
 
     @Bean
-    PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
+    public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
         PropertyPlaceholderConfigurer resolver = new PropertyPlaceholderConfigurer();
         resolver.setLocation(new ClassPathResource(ModeUtils.getMode().getModeName() + "-persistence.properties"));
 
